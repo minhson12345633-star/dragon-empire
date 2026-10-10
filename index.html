@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DRAGON EMPIRE – ĐẾ CHẾ RỒNG | Cổng Game Huyền Thoại</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* RESET & VARIABLES */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-void: #07090e;
@@ -21,24 +18,14 @@
             --primary-gold: #f1c40f;
             --primary-gold-hover: #f39c12;
             --accent-red: #e74c3c;
-            --accent-purple: #9b59b6;
             --text-main: #ecf0f1;
             --text-muted: #95a5a6;
             --border-color: rgba(241, 196, 15, 0.2);
             --glow-gold: 0 0 20px rgba(241, 196, 15, 0.4);
             --glow-red: 0 0 25px rgba(231, 76, 60, 0.5);
         }
-        body {
-            background-color: var(--bg-void);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-        h1, h2, h3, h4, .brand-name, .hero-title, .intro-title {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 1px;
-        }
+        body { background-color: var(--bg-void); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; min-height: 100vh; }
+        h1, h2, h3, h4, .brand-name, .hero-title, .intro-title { font-family: 'Cinzel', serif; letter-spacing: 1px; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
@@ -47,7 +34,7 @@
         .mt-4 { margin-top: 25px; }
         .mt-5 { margin-top: 40px; }
 
-        /* INTRO SCREEN ANIMATION */
+        /* INTRO SCREEN */
         .intro-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #1b1224 0%, #07090e 100%);
@@ -55,17 +42,6 @@
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
         .intro-screen.fade-out { opacity: 0; visibility: hidden; }
-        .intro-bg-effects { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
-        .volcano-glow {
-            position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%);
-            width: 600px; height: 300px;
-            background: radial-gradient(ellipse at bottom, rgba(231, 76, 60, 0.6) 0%, transparent 70%);
-            filter: blur(40px); animation: pulseGlow 4s infinite alternate;
-        }
-        @keyframes pulseGlow {
-            0% { opacity: 0.5; transform: translateX(-50%) scale(1); }
-            100% { opacity: 0.9; transform: translateX(-50%) scale(1.1); }
-        }
         .intro-content { position: relative; z-index: 2; text-align: center; max-width: 700px; padding: 0 20px; }
         .intro-title { font-size: 3rem; color: var(--primary-gold); text-shadow: 0 0 20px rgba(241, 196, 15, 0.6); margin: 15px 0 10px; }
         .intro-slogan { font-size: 1.1rem; color: var(--text-muted); letter-spacing: 2px; margin-bottom: 30px; }
@@ -88,899 +64,288 @@
         .btn-xl { padding: 15px 35px; font-size: 1.05rem; }
 
         /* NAVBAR */
-        .navbar {
-            position: sticky; top: 0; left: 0; width: 100%;
-            background: rgba(10, 12, 20, 0.9); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color); z-index: 1000;
-        }
+        .navbar { position: sticky; top: 0; left: 0; width: 100%; background: rgba(10, 12, 20, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
         .nav-container { max-width: 1280px; margin: 0 auto; padding: 0 20px; height: 75px; display: flex; align-items: center; justify-content: space-between; }
         .brand-logo { display: flex; align-items: center; gap: 12px; }
-        .logo-icon {
-            width: 45px; height: 45px; background: linear-gradient(135deg, #e74c3c, #f1c40f);
-            border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #000; box-shadow: var(--glow-gold);
-        }
-        .brand-text { display: flex; flex-direction: column; }
+        .logo-icon { width: 45px; height: 45px; background: linear-gradient(135deg, #e74c3c, #f1c40f); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #000; box-shadow: var(--glow-gold); }
         .brand-name { font-size: 1.2rem; font-weight: 900; color: var(--primary-gold); }
         .brand-sub { font-size: 0.7rem; letter-spacing: 2px; color: var(--text-muted); }
         .nav-center ul { display: flex; gap: 30px; }
         .nav-link { font-weight: 600; font-size: 0.95rem; color: var(--text-muted); transition: color 0.3s; position: relative; padding: 5px 0; }
         .nav-link:hover, .nav-link.active { color: var(--primary-gold); }
-        .nav-link.active::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--primary-gold); box-shadow: var(--glow-gold);
-        }
+        .nav-link.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--primary-gold); box-shadow: var(--glow-gold); }
         .auth-buttons { display: flex; gap: 12px; }
-        .btn-login {
-            background: transparent; color: var(--text-main); border: 1px solid var(--border-color);
-            padding: 8px 18px; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s;
-        }
+        .btn-login { background: transparent; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 18px; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
         .btn-login:hover { border-color: var(--primary-gold); color: var(--primary-gold); }
-        .btn-register {
-            background: var(--primary-gold); color: #000; border: none; padding: 8px 18px; border-radius: 5px; font-weight: 700; cursor: pointer; transition: all 0.3s;
-        }
-        .btn-register:hover { background: var(--primary-gold-hover); box-shadow: var(--glow-gold); }
+        .btn-register { background: var(--primary-gold); color: #000; border: none; padding: 8px 18px; border-radius: 5px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
 
         /* USER MENU */
         .user-menu-wrapper { position: relative; }
-        .user-trigger {
-            display: flex; align-items: center; gap: 10px; background: var(--bg-card); border: 1px solid var(--border-color);
-            padding: 6px 14px; border-radius: 25px; cursor: pointer; transition: all 0.3s;
-        }
-        .user-trigger:hover { border-color: var(--primary-gold); }
-        .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: #333; }
+        .user-trigger { display: flex; align-items: center; gap: 10px; background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 25px; cursor: pointer; }
         .username { font-weight: 600; font-size: 0.9rem; color: var(--primary-gold); }
-        .user-dropdown-menu {
-            position: absolute; top: 50px; right: 0; width: 220px; background: var(--bg-card);
-            border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: none; flex-direction: column; padding: 8px 0; z-index: 100;
-        }
+        .user-dropdown-menu { position: absolute; top: 50px; right: 0; width: 220px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; display: none; flex-direction: column; padding: 8px 0; z-index: 100; }
         .user-dropdown-menu.show { display: flex; }
-        .user-dropdown-menu a {
-            padding: 10px 16px; font-size: 0.9rem; color: var(--text-main); transition: background 0.2s; display: flex; align-items: center; gap: 10px;
-        }
-        .user-dropdown-menu a:hover { background: rgba(241, 196, 15, 0.1); color: var(--primary-gold); }
-        .dropdown-divider { height: 1px; background: var(--border-color); margin: 6px 0; }
-        .logout-link { color: var(--accent-red) !important; }
+        .user-dropdown-menu a { padding: 10px 16px; font-size: 0.9rem; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
 
         /* HERO SECTION */
-        .hero-section {
-            position: relative; height: 550px;
-            background: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-            display: flex; align-items: center; justify-content: center; text-align: center; border-bottom: 2px solid var(--border-color);
-        }
+        .hero-section { position: relative; height: 520px; background: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; border-bottom: 2px solid var(--border-color); }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(7,9,14,0.4) 0%, rgba(7,9,14,0.95) 100%); }
         .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 20px; }
-        .hero-badge {
-            display: inline-block; background: rgba(231, 76, 60, 0.2); border: 1px solid var(--accent-red);
-            color: #ff6b6b; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; box-shadow: var(--glow-red);
-        }
+        .hero-badge { display: inline-block; background: rgba(231, 76, 60, 0.2); border: 1px solid var(--accent-red); color: #ff6b6b; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; }
         .hero-title { font-size: 3rem; font-weight: 900; color: var(--primary-gold); text-shadow: 0 0 25px rgba(241, 196, 15, 0.5); margin-bottom: 15px; }
         .hero-description { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
         .hero-meta { display: flex; justify-content: center; gap: 30px; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px; }
-        .hero-meta i { color: var(--primary-gold); margin-right: 6px; }
         .hero-actions { display: flex; justify-content: center; gap: 20px; }
 
-        /* SECTION & SEARCH */
+        /* SECTION & CARDS */
         .content-section { padding: 60px 0; }
-        .section-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
-        .section-title-wrap h2 { font-size: 2rem; color: var(--primary-gold); margin-bottom: 5px; }
-        .section-title-wrap p { color: var(--text-muted); font-size: 0.95rem; }
-        .game-search-box { position: relative; width: 320px; }
-        .game-search-box i { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: var(--text-muted); }
-        .game-search-box input {
-            width: 100%; background: var(--bg-card); border: 1px solid var(--border-color);
-            padding: 12px 15px 12px 45px; border-radius: 8px; color: var(--text-main); font-size: 0.95rem; outline: none; transition: all 0.3s;
-        }
-        .game-search-box input:focus { border-color: var(--primary-gold); box-shadow: var(--glow-gold); }
-
-        /* GAME GRID & CARDS */
         .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .game-card {
-            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
-            overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-        .game-card:hover { transform: translateY(-5px); border-color: var(--primary-gold); box-shadow: var(--glow-gold); }
-        .game-card-img { position: relative; height: 200px; overflow: hidden; }
-        .game-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .game-card:hover .game-card-img img { transform: scale(1.08); }
-        .game-badge-hot {
-            position: absolute; top: 15px; right: 15px; background: var(--accent-red); color: #fff;
-            padding: 4px 12px; font-size: 0.75rem; font-weight: 700; border-radius: 4px; box-shadow: var(--glow-red); z-index: 2;
-        }
-        .game-card-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 9, 14, 0.8);
-            display: flex; align-items: center; justify-content: center; gap: 15px; opacity: 0; transition: opacity 0.3s ease; z-index: 3;
-        }
-        .game-card:hover .game-card-overlay { opacity: 1; }
+        .game-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: all 0.3s; }
+        .game-card:hover { transform: translateY(-5px); border-color: var(--primary-gold); }
+        .game-card-img { position: relative; height: 200px; }
+        .game-card-img img { width: 100%; height: 100%; object-fit: cover; }
         .game-card-body { padding: 20px; }
-        .game-genre { font-size: 0.8rem; color: var(--primary-gold); text-transform: uppercase; font-weight: 600; letter-spacing: 1px; }
-        .game-card-body h3 { font-size: 1.25rem; margin: 8px 0 10px; color: var(--text-main); }
-        .game-card-body p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; }
-        .game-card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 15px; }
-        .status-badge { font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-        .status-badge.live { color: #2ecc71; }
-        .status-badge.live i { font-size: 0.5rem; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .link-detail { font-size: 0.85rem; font-weight: 600; color: var(--primary-gold); transition: color 0.2s; }
-        .link-detail:hover { color: var(--primary-gold-hover); text-decoration: underline; }
-        .no-results { text-align: center; padding: 60px 0; color: var(--text-muted); }
-        .no-results i { color: var(--primary-gold); margin-bottom: 15px; }
 
-        /* FEATURES SECTION */
-        .features-section { background: var(--bg-dark); padding: 80px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .center-title { text-align: center; max-width: 700px; margin: 0 auto 50px; }
-        .center-title h2 { font-size: 2.2rem; color: var(--primary-gold); margin-bottom: 10px; }
-        .center-title p { color: var(--text-muted); }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .feature-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 35px 30px; border-radius: 12px; text-align: center; transition: transform 0.3s; }
-        .feature-card:hover { transform: translateY(-5px); border-color: var(--primary-gold); }
-        .feature-icon {
-            width: 70px; height: 70px; background: rgba(241, 196, 15, 0.1); border: 1px solid var(--primary-gold);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem; color: var(--primary-gold); box-shadow: var(--glow-gold);
-        }
-        .feature-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
-        .feature-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-
-        /* GAME DETAIL & PAGES */
-        .page-padding { padding: 50px 20px; min-height: 70vh; }
-        .btn-back { background: transparent; color: var(--text-muted); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; margin-bottom: 30px; transition: all 0.3s; }
-        .btn-back:hover { color: var(--primary-gold); border-color: var(--primary-gold); }
-        .game-detail-hero { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; padding: 30px; }
-        .game-detail-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-        .badge-release { display: inline-flex; align-items: center; gap: 8px; color: #2ecc71; font-size: 0.85rem; font-weight: 700; margin-bottom: 15px; }
-        .game-detail-info h1 { font-size: 2.2rem; color: var(--primary-gold); margin-bottom: 15px; }
-        .detail-desc { color: var(--text-muted); line-height: 1.7; margin-bottom: 25px; }
-        .game-specs { background: var(--bg-void); padding: 15px 20px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 25px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .card-box { background: var(--bg-card); border: 1px solid var(--border-color); padding: 25px; border-radius: 10px; }
-        .card-box h4 { color: var(--primary-gold); margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
-        .card-box ul { padding-left: 20px; list-style: disc; display: flex; flex-direction: column; gap: 10px; color: var(--text-muted); font-size: 0.9rem; }
-
-        /* PLAY ARENA */
-        .play-arena { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; display: flex; flex-direction: column; }
-        .play-header { height: 65px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 25px; }
-        .play-title-wrap { display: flex; align-items: center; gap: 20px; }
-        .play-title-wrap h2 { font-size: 1.2rem; color: var(--primary-gold); }
-        .btn-back-play { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: var(--text-main); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
-        .btn-back-play:hover { background: var(--accent-red); border-color: var(--accent-red); }
-        .btn-control { background: var(--bg-void); border: 1px solid var(--border-color); color: var(--text-main); width: 38px; height: 38px; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
-        .btn-control:hover { border-color: var(--primary-gold); color: var(--primary-gold); }
-        .play-frame-container { flex: 1; position: relative; background: radial-gradient(circle at center, #131722 0%, #000 100%); display: flex; align-items: center; justify-content: center; }
-        .game-placeholder-screen { text-align: center; max-width: 600px; padding: 40px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
-        .game-loader-spinner { width: 50px; height: 50px; border: 4px solid rgba(241, 196, 15, 0.2); border-top-color: var(--primary-gold); border-radius: 50%; margin: 0 auto 20px; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .game-placeholder-screen h3 { color: var(--primary-gold); font-size: 1.4rem; margin-bottom: 10px; }
-        .game-placeholder-screen p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
-        .game-placeholder-screen code { background: var(--bg-void); padding: 6px 12px; border-radius: 4px; color: var(--accent-red); font-family: monospace; font-size: 0.95rem; }
+        /* WEBGAME ARENA CANVAS */
+        .play-arena { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #05070c; z-index: 2000; display: flex; flex-direction: column; }
+        .play-header { height: 60px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 25px; }
+        .play-title-wrap h2 { font-size: 1.1rem; color: var(--primary-gold); }
+        .btn-back-play { background: rgba(255,255,255,0.08); border: 1px solid var(--border-color); color: var(--text-main); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .game-canvas-box { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; }
+        #dragonCanvas { background: radial-gradient(circle at center, #1a0f2b 0%, #05070c 100%); border: 2px solid var(--border-color); border-radius: 12px; box-shadow: var(--glow-gold); }
+        .canvas-overlay-ui { position: absolute; top: 20px; left: 30px; color: var(--primary-gold); font-family: 'Cinzel', serif; font-size: 1.1rem; text-shadow: 0 0 10px #000; }
 
         /* AUTH MODAL */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(8px); z-index: 3000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .modal-box { position: relative; width: 100%; max-width: 440px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px 35px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
-        .modal-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; transition: color 0.2s; }
-        .modal-close:hover { color: var(--primary-gold); }
-        .modal-brand { text-align: center; margin-bottom: 30px; }
-        .modal-brand i { font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 8px; }
-        .modal-brand h2 { font-size: 1.4rem; color: var(--primary-gold); }
-        .auth-form-panel h3 { font-size: 1.2rem; margin-bottom: 5px; }
-        .auth-form-panel p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+        .modal-box { position: relative; width: 100%; max-width: 440px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px 35px; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; }
         .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
-        .form-group input { width: 100%; background: var(--bg-void); border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 8px; color: var(--text-main); font-size: 0.95rem; outline: none; transition: all 0.3s; }
-        .form-group input:focus { border-color: var(--primary-gold); box-shadow: var(--glow-gold); }
-        .password-wrap { position: relative; }
-        .toggle-password { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: var(--text-muted); cursor: pointer; font-size: 0.9rem; }
-        .toggle-password:hover { color: var(--primary-gold); }
-        .form-row-check { display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin: 15px 0; }
-        .error-msg { color: var(--accent-red); font-size: 0.85rem; margin-top: 10px; }
-        .success-msg { color: #2ecc71; font-size: 0.85rem; margin-top: 10px; }
-        .auth-switch-text { text-align: center; font-size: 0.9rem; color: var(--text-muted); }
-        .auth-switch-text a { color: var(--primary-gold); font-weight: 600; }
-        .auth-switch-text a:hover { text-decoration: underline; }
+        .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+        .form-group input { width: 100%; background: var(--bg-void); border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 8px; color: var(--text-main); outline: none; }
 
-        /* FOOTER */
-        .footer { background: var(--bg-dark); border-top: 1px solid var(--border-color); padding: 60px 0 20px; color: var(--text-muted); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-        .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--primary-gold); font-family: 'Cinzel', serif; font-weight: 900; font-size: 1.3rem; margin-bottom: 15px; }
-        .footer-desc { font-size: 0.9rem; line-height: 1.6; }
-        .footer-col h4 { color: var(--text-main); font-size: 1.05rem; margin-bottom: 20px; }
-        .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
-        .footer-col ul li a { font-size: 0.9rem; transition: color 0.2s; }
-        .footer-col ul li a:hover { color: var(--primary-gold); }
-        .footer-badge-box { display: flex; gap: 10px; margin-top: 15px; }
-        .footer-badge-box span { background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-main); }
-        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 20px; text-align: center; font-size: 0.85rem; }
-
-        /* RESPONSIVE */
-        @media(max-width: 992px) {
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .game-detail-hero { grid-template-columns: 1fr; }
-            .nav-center { display: none; }
-        }
-        @media(max-width: 768px) {
-            .hero-title { font-size: 2.2rem; }
-            .hero-meta { flex-direction: column; gap: 10px; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .grid-2 { grid-template-columns: 1fr; }
-        }
+        .footer { background: var(--bg-dark); border-top: 1px solid var(--border-color); padding: 40px 0 20px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
-    <!-- MÀN HÌNH CHÀO MỪNG (INTRO ANIMATION) -->
+    <!-- INTRO -->
     <div id="intro-screen" class="intro-screen">
-        <div class="intro-bg-effects">
-            <div class="volcano-glow"></div>
-        </div>
         <div class="intro-content">
             <h1 class="intro-title">DRAGON EMPIRE</h1>
             <p class="intro-slogan">AWAKEN YOUR DRAGON EMPIRE – ĐÁNH THỨC ĐẾ CHẾ RỒNG</p>
-            <div class="intro-loader">
-                <div class="loader-bar"></div>
-            </div>
+            <div class="intro-loader"><div class="loader-bar"></div></div>
             <button id="skip-intro-btn" class="btn-glow-gold">VÀO CỔNG GAME <i class="fa-solid fa-angle-right"></i></button>
         </div>
     </div>
 
-    <!-- THANH ĐIỀU HƯỚNG (NAVBAR) -->
+    <!-- NAVBAR -->
     <header class="navbar">
         <div class="nav-container">
-            <div class="nav-left">
-                <a href="#" class="brand-logo" onclick="switchTab('home')">
-                    <div class="logo-icon">
-                        <i class="fa-solid fa-dragon"></i>
-                    </div>
-                    <div class="brand-text">
-                        <span class="brand-name">DRAGON EMPIRE</span>
-                        <span class="brand-sub">ĐẾ CHẾ RỒNG</span>
-                    </div>
-                </a>
-            </div>
+            <a href="#" class="brand-logo" onclick="switchTab('home')">
+                <div class="logo-icon"><i class="fa-solid fa-dragon"></i></div>
+                <div class="brand-text">
+                    <span class="brand-name">DRAGON EMPIRE</span>
+                    <span class="brand-sub">ĐẾ CHẾ RỒNG</span>
+                </div>
+            </a>
             <nav class="nav-center">
                 <ul>
                     <li><a href="#" class="nav-link active" data-tab="home" onclick="switchTab('home')">TRANG CHỦ</a></li>
                     <li><a href="#" class="nav-link" data-tab="games" onclick="switchTab('games')">GAME</a></li>
-                    <li><a href="#" class="nav-link" data-tab="news" onclick="switchTab('news')">TIN TỨC</a></li>
                     <li><a href="#" class="nav-link" data-tab="support" onclick="switchTab('support')">HỖ TRỢ</a></li>
                 </ul>
             </nav>
-            <div class="nav-right" id="auth-nav-container">
+            <div id="auth-nav-container">
                 <div id="guest-actions" class="auth-buttons">
                     <button class="btn-login" onclick="openAuthModal('login')"><i class="fa-solid fa-user"></i> ĐĂNG NHẬP</button>
                     <button class="btn-register" onclick="openAuthModal('register')">ĐĂNG KÝ</button>
                 </div>
                 <div id="user-actions" class="user-menu-wrapper" style="display: none;">
                     <div class="user-trigger" onclick="toggleUserDropdown()">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=DragonLord" alt="Avatar" class="user-avatar">
                         <span id="display-username" class="username">Chúa Tể Rồng</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div id="user-dropdown" class="user-dropdown-menu">
-                        <a href="#" onclick="showUserProfile()"><i class="fa-solid fa-id-card"></i> Hồ sơ tài khoản</a>
-                        <a href="#" onclick="showUserSettings()"><i class="fa-solid fa-gear"></i> Cài đặt</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="logout-link" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                        <a href="#" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- NỘI DUNG CHÍNH -->
-    <main class="main-container">
-
-        <!-- TAB TRANG CHỦ -->
-        <section id="tab-home" class="tab-content active">
+    <!-- MAIN CONTAINER -->
+    <main>
+        <section id="tab-home" class="tab-content">
             <div class="hero-section">
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <div class="hero-badge"><i class="fa-solid fa-crown"></i> PHIÊN BẢN CHÍNH THỨC 1.0</div>
+                    <div class="hero-badge"><i class="fa-solid fa-crown"></i> WEBGAME HTML5 CHÍNH THỨC</div>
                     <h1 class="hero-title">DRAGON EMPIRE – ĐẾ CHẾ RỒNG</h1>
                     <p class="hero-description">
                         “Thu thập những loài rồng huyền thoại. Xây dựng đế chế của riêng bạn. Thức tỉnh sức mạnh cổ đại và trở thành Chúa Tể Rồng tối cao.”
                     </p>
-                    <div class="hero-meta">
-                        <span><i class="fa-solid fa-gamepad"></i> Thể loại: Fantasy / Thu thập rồng / Chiến thuật</span>
-                        <span><i class="fa-solid fa-desktop"></i> Nền tảng: Trình duyệt / Windows (Java + LibGDX)</span>
-                    </div>
                     <div class="hero-actions">
-                        <button class="btn-glow-gold btn-xl" onclick="playGame('dragon-empire')">
-                            <i class="fa-solid fa-play"></i> CHƠI NGAY
-                        </button>
-                        <button class="btn-outline btn-xl" onclick="showGameDetail('dragon-empire')">
-                            <i class="fa-solid fa-circle-info"></i> KHÁM PHÁ GAME
-                        </button>
+                        <button class="btn-glow-gold btn-xl" onclick="playGame()"><i class="fa-solid fa-play"></i> CHƠI NGAY TRÊN WEB</button>
                     </div>
                 </div>
             </div>
 
             <div class="content-section container">
-                <div class="section-header-flex">
-                    <div class="section-title-wrap">
-                        <h2>CỔNG GAME & TÌM KIẾM</h2>
-                        <p>Khám phá các tựa game đỉnh cao thuộc hệ thống Dragon Empire</p>
-                    </div>
-                    <div class="game-search-box">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="game-search-input" placeholder="Tìm kiếm game của bạn..." oninput="handleGameSearch(this.value)">
-                    </div>
-                </div>
-
-                <div id="game-grid" class="game-grid">
-                    <div class="game-card" data-name="dragon empire đế chế rồng">
-                        <div class="game-card-img">
-                            <div class="game-badge-hot">HOT</div>
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Dragon Empire">
-                            <div class="game-card-overlay">
-                                <button class="btn-glow-gold" onclick="playGame('dragon-empire')"><i class="fa-solid fa-play"></i> Chơi ngay</button>
-                                <button class="btn-outline" onclick="showGameDetail('dragon-empire')"><i class="fa-solid fa-eye"></i> Chi tiết</button>
-                            </div>
-                        </div>
-                        <div class="game-card-body">
-                            <span class="game-genre">Fantasy / Chiến thuật</span>
-                            <h3>DRAGON EMPIRE – ĐẾ CHẾ RỒNG</h3>
-                            <p>Xây dựng vương quốc, thuần hóa rồng cổ đại và chiến đấu giành quyền thống trị lục địa huyền ảo.</p>
-                            <div class="game-card-footer">
-                                <span class="status-badge live"><i class="fa-solid fa-circle"></i> Sẵn sàng</span>
-                                <a href="#" onclick="showGameDetail('dragon-empire'); return false;" class="link-detail">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="no-search-results" class="no-results" style="display: none;">
-                    <i class="fa-solid fa-dragon fa-3x"></i>
-                    <h3>Không tìm thấy tựa game phù hợp</h3>
-                    <p>Hãy thử tìm kiếm với từ khóa khác như "Dragon Empire".</p>
-                </div>
-            </div>
-
-            <div class="features-section">
-                <div class="container">
-                    <div class="center-title">
-                        <h2>TÍNH NĂNG NỔI BẬT ĐẾ CHẾ RỒNG</h2>
-                        <p>Trải nghiệm đỉnh cao công nghệ đồ họa và lối chơi chiến thuật thế hệ mới</p>
-                    </div>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
-                            <h3>Hơn 50+ Loài Rồng Cổ Đại</h3>
-                            <p>Sưu tập, ấp trứng và tiến hóa các loài rồng nguyên thủy với sức mạnh hủy diệt và kỹ năng nguyên tố độc nhất.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon"><i class="fa-solid fa-chess-rook"></i></div>
-                            <h3>Xây Dựng Đế Chế Vững Chắc</h3>
-                            <p>Nâng cấp thành trì, khai thác tài nguyên ma thuật, thiết lập hệ thống phòng thủ kiên cố trước mọi cuộc tấn công.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon"><i class="fa-solid fa-earth-americas"></i></div>
-                            <h3>Chiến Trường PvP Thời Gian Thực</h3>
-                            <p>Tham gia liên minh, chinh phạt các hầm ngục cổ đại và đối đầu trực tiếp cùng các Chúa Tể Rồng trên toàn thế giới.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB GAME -->
-        <section id="tab-games" class="tab-content" style="display: none;">
-            <div class="container page-padding">
-                <h2>TẤT CẢ TRÒ CHƠI TRONG HỆ THỐNG</h2>
-                <p>Khám phá hệ sinh thái game độc quyền từ Dragon Empire Studio.</p>
+                <h2>TỰA GAME NỔI BẬT</h2>
                 <div class="game-grid mt-4">
                     <div class="game-card">
-                        <div class="game-card-img">
-                            <div class="game-badge-hot">CHỦ ĐẠO</div>
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Dragon Empire">
-                            <div class="game-card-overlay">
-                                <button class="btn-glow-gold" onclick="playGame('dragon-empire')"><i class="fa-solid fa-play"></i> Chơi ngay</button>
-                            </div>
-                        </div>
+                        <div class="game-card-img"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Dragon Empire"></div>
                         <div class="game-card-body">
-                            <span class="game-genre">Fantasy / Chiến thuật / LibGDX</span>
                             <h3>DRAGON EMPIRE – ĐẾ CHẾ RỒNG</h3>
-                            <p>Tựa game chiến lược quản lý đế chế rồng đỉnh cao được phát triển trên nền tảng Java & LibGDX.</p>
+                            <p>Trải nghiệm phiên bản game Rồng Nguyên Tố chạy trực tiếp trên trình duyệt web.</p>
+                            <button class="btn-glow-gold mt-3 w-100" onclick="playGame()"><i class="fa-solid fa-gamepad"></i> Chơi Ngay</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB TIN TỨC -->
-        <section id="tab-news" class="tab-content" style="display: none;">
-            <div class="container page-padding">
-                <h2>TIN TỨC & SỰ KIỆN</h2>
-                <p>Cập nhật những thông tin mới nhất về bản cập nhật, sự kiện và lộ trình phát triển.</p>
-                <div class="news-list mt-4">
-                    <div class="news-item">
-                        <h3>Khai mở Cổng Game Portal Dragon Empire phiên bản Alpha Test</h3>
-                        <p style="color:var(--text-muted); margin-top:10px;">Chào đón các Chúa Tể Rồng bước vào thế giới huyền thoại. Trải nghiệm hệ thống quản lý tài khoản và chơi game mượt mà.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB HỖ TRỢ -->
-        <section id="tab-support" class="tab-content" style="display: none;">
-            <div class="container page-padding">
-                <h2>TRUNG TÂM HỖ TRỢ</h2>
-                <p>Bạn gặp sự cố khi đăng nhập, cài đặt hoặc trải nghiệm game? Chúng tôi luôn sẵn sàng hỗ trợ.</p>
-                <div class="card-box mt-4">
-                    <h3><i class="fa-solid fa-headset"></i> Kênh Hỗ Trợ Chính Thức</h3>
-                    <p style="margin:10px 0;">Gửi yêu cầu hỗ trợ qua email hoặc tham gia cộng đồng để được giải đáp nhanh chóng.</p>
-                    <ul>
-                        <li><strong>Email Hỗ Trợ:</strong> support@dragonempire.gaming</li>
-                        <li><strong>Bảo mật:</strong> Dữ liệu tài khoản demo được lưu trữ cục bộ an toàn trên trình duyệt.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- TRANG CHI TIẾT GAME -->
-        <section id="game-detail-view" class="tab-content" style="display: none;">
-            <div class="container page-padding">
-                <button class="btn-back" onclick="switchTab('home')"><i class="fa-solid fa-arrow-left"></i> Quay lại trang chủ</button>
-                <div class="game-detail-hero">
-                    <div class="game-detail-img">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Dragon Empire">
-                    </div>
-                    <div class="game-detail-info">
-                        <span class="badge-release"><i class="fa-solid fa-circle-check"></i> Đã phát hành bản thử nghiệm</span>
-                        <h1>DRAGON EMPIRE – ĐẾ CHẾ RỒNG</h1>
-                        <p class="detail-desc">
-                            Dragon Empire là tựa game chiến thuật kết hợp thu thập rồng huyền thoại, được xây dựng với tâm huyết mang lại trải nghiệm nhập vai chiến lược sâu sắc. Người chơi sẽ vào vai một Chúa Tể Rồng, xây dựng thành trì trên những hòn đảo lơ lửng, huấn luyện binh đoàn rồng và chinh phạt các thế lực hắc ám.
-                        </p>
-                        <div class="game-specs">
-                            <div><strong>Thể loại:</strong> Fantasy, Chiến thuật, Thu thập</div>
-                            <div><strong>Công nghệ:</strong> Java, LibGDX (HTML5 WebAssembly Ready)</div>
-                            <div><strong>Trạng thái:</strong> Hoạt động ổn định</div>
-                        </div>
-                        <div class="action-row">
-                            <button class="btn-glow-gold btn-xl" onclick="playGame('dragon-empire')"><i class="fa-solid fa-play"></i> CHƠI NGAY</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-features-detailed mt-5">
-                    <h3>Tính Năng & Hướng Dẫn Điều Khiển</h3>
-                    <div class="grid-2 mt-3">
-                        <div class="card-box">
-                            <h4><i class="fa-solid fa-dragon"></i> Tính Năng Cốt Lõi</h4>
-                            <ul>
-                                <li>Ấp trứng và tiến hóa 5 dòng rồng nguyên tố (Lửa, Băng, Sấm, Đất, Bóng Tối).</li>
-                                <li>Xây dựng và tùy biến kiến trúc pháo đài bay.</li>
-                                <li>Hệ thống nhiệm vụ cốt truyện huyền thoại hấp dẫn.</li>
-                            </ul>
-                        </div>
-                        <div class="card-box">
-                            <h4><i class="fa-solid fa-gamepad"></i> Hướng Dẫn Điều Khiển</h4>
-                            <ul>
-                                <li><strong>Sử dụng Chuột:</strong> Tương tác, chọn tướng, điều phối quân đội và điều hướng giao diện.</li>
-                                <li><strong>Phím W, A, S, D / Mũi tên:</strong> Di chuyển bản đồ chiến lược.</li>
-                                <li><strong>Phím ESC:</strong> Mở bảng menu tạm dừng / cài đặt.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- MÀN HÌNH CHƠI GAME -->
+        <!-- CANVAS GAME ARENA -->
         <section id="play-arena" class="play-arena" style="display: none;">
             <div class="play-header">
                 <div class="play-title-wrap">
                     <button class="btn-back-play" onclick="closeGamePlay()"><i class="fa-solid fa-arrow-left"></i> Thoát game</button>
-                    <h2><i class="fa-solid fa-dragon"></i> DRAGON EMPIRE – ĐẾ CHẾ RỒNG</h2>
                 </div>
-                <div class="play-controls">
-                    <button class="btn-control" onclick="toggleFullscreen()" title="Toàn màn hình"><i class="fa-solid fa-expand"></i></button>
-                </div>
+                <h2><i class="fa-solid fa-dragon"></i> DRAGON EMPIRE ARENA (HTML5)</h2>
+                <div></div>
             </div>
-            <div class="play-frame-container" id="game-frame-box">
-                <div class="game-placeholder-screen" id="game-load-state">
-                    <div class="game-loader-spinner"></div>
-                    <h3>SẴN SÀNG TÍCH HỢP BẢN LIBGDX HTML5</h3>
-                    <p>Dự án game gốc được phát triển bằng <strong>Java + LibGDX</strong>. Khi bạn đã xuất bản gói HTML5 (TeaVM/GWT), bạn có thể nhúng trực tiếp hoặc tải tệp web vào đây.</p>
-                    <div class="mt-4">
-                        <button class="btn-glow-gold" onclick="closeGamePlay()"><i class="fa-solid fa-arrow-left"></i> Quay lại Cổng Game Portal</button>
-                    </div>
+            <div class="game-canvas-box">
+                <div class="canvas-overlay-ui">
+                    <div>🔥 CHÚA TỂ RỒNG: LỬA THIÊNG CỔ ĐẠI</div>
+                    <div style="font-size:0.85rem; color:#aaa; margin-top:5px;">Sử dụng phím W, A, S, D hoặc Mũi Tên để di chuyển Rồng. Phím SPACE để Phun Lửa!</div>
                 </div>
+                <canvas id="dragonCanvas" width="900" height="550"></canvas>
             </div>
         </section>
-
     </main>
 
-    <!-- MODAL ĐĂNG NHẬP / ĐĂNG KÝ -->
+    <!-- AUTH MODAL -->
     <div id="auth-modal" class="modal-overlay" style="display: none;">
         <div class="modal-box">
             <button class="modal-close" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-brand">
-                <i class="fa-solid fa-dragon"></i>
-                <h2>DRAGON EMPIRE</h2>
-            </div>
-
-            <!-- Form Đăng Nhập -->
-            <div id="form-login" class="auth-form-panel">
-                <h3>ĐĂNG NHẬP TÀI KHOẢN</h3>
-                <p>Chào mừng trở lại, Chúa Tể Rồng!</p>
-                <div class="form-group mt-3">
-                    <label>Tên tài khoản hoặc Email</label>
-                    <input type="text" id="login-username" placeholder="Nhập tên tài khoản...">
-                </div>
-                <div class="form-group">
-                    <label>Mật khẩu</label>
-                    <div class="password-wrap">
-                        <input type="password" id="login-password" placeholder="Nhập mật khẩu...">
-                        <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('login-password', this)"></i>
-                    </div>
-                </div>
-                <div class="form-row-check">
-                    <label><input type="checkbox" id="remember-me"> Ghi nhớ tên tài khoản</label>
-                </div>
-                <div id="login-error" class="error-msg" style="display: none;"></div>
+            <div id="form-login">
+                <h3>ĐĂNG NHẬP</h3>
+                <div class="form-group mt-3"><label>Tên tài khoản</label><input type="text" id="login-username"></div>
+                <div class="form-group"><label>Mật khẩu</label><input type="password" id="login-password"></div>
                 <button class="btn-glow-gold w-100 mt-3" onclick="submitLogin()">ĐĂNG NHẬP</button>
-                <div class="auth-switch-text mt-3">
-                    Chưa có tài khoản? <a href="#" onclick="switchAuthMode('register')">Đăng ký ngay</a>
-                </div>
-            </div>
-
-            <!-- Form Đăng Ký -->
-            <div id="form-register" class="auth-form-panel" style="display: none;">
-                <h3>ĐĂNG KÝ TÀI KHOẢN MỚI</h3>
-                <p>Tham gia đế chế rồng ngay hôm nay</p>
-                <div class="form-group mt-3">
-                    <label>Tên tài khoản</label>
-                    <input type="text" id="reg-username" placeholder="Chọn tên tài khoản...">
-                </div>
-                <div class="form-group">
-                    <label>Email liên kết</label>
-                    <input type="email" id="reg-email" placeholder="Nhập email của bạn...">
-                </div>
-                <div class="form-group">
-                    <label>Mật khẩu</label>
-                    <div class="password-wrap">
-                        <input type="password" id="reg-password" placeholder="Tạo mật khẩu...">
-                        <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('reg-password', this)"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Xác nhận mật khẩu</label>
-                    <div class="password-wrap">
-                        <input type="password" id="reg-confirm" placeholder="Nhập lại mật khẩu...">
-                        <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('reg-confirm', this)"></i>
-                    </div>
-                </div>
-                <div class="form-row-check">
-                    <label><input type="checkbox" id="reg-terms"> Tôi đồng ý với Điều khoản sử dụng</label>
-                </div>
-                <div id="reg-error" class="error-msg" style="display: none;"></div>
-                <div id="reg-success" class="success-msg" style="display: none;"></div>
-                <button class="btn-glow-gold w-100 mt-3" onclick="submitRegister()">ĐĂNG KÝ TÀI KHOẢN</button>
-                <div class="auth-switch-text mt-3">
-                    Đã có tài khoản? <a href="#" onclick="switchAuthMode('login')">Đăng nhập</a>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- CHÂN TRANG -->
     <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <div class="footer-brand">
-                    <i class="fa-solid fa-dragon"></i>
-                    <span>DRAGON EMPIRE</span>
-                </div>
-                <p class="footer-desc">
-                    ĐẾ CHẾ RỒNG – Nền tảng cổng game giả tưởng chuyên nghiệp mang lại trải nghiệm đỉnh cao cho cộng đồng game thủ.
-                </p>
-            </div>
-            <div class="footer-col">
-                <h4>Liên Kết Nhanh</h4>
-                <ul>
-                    <li><a href="#" onclick="switchTab('home')">Trang chủ</a></li>
-                    <li><a href="#" onclick="switchTab('games')">Kho game</a></li>
-                    <li><a href="#" onclick="switchTab('news')">Tin tức</a></li>
-                    <li><a href="#" onclick="switchTab('support')">Hỗ trợ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Pháp Lý & Điều Khoản</h4>
-                <ul>
-                    <li><a href="#">Điều khoản sử dụng</a></li>
-                    <li><a href="#">Chính sách quyền riêng tư</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Hệ Thống Nền Tảng</h4>
-                <p>Hỗ trợ tối ưu trên trình duyệt Chrome, Edge và Windows PC.</p>
-                <div class="footer-badge-box">
-                    <span><i class="fa-brands fa-windows"></i> Windows PC</span>
-                    <span><i class="fa-solid fa-globe"></i> HTML5 Ready</span>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 DRAGON EMPIRE – ĐẾ CHẾ RỒNG. Bảo lưu mọi quyền.</p>
-        </div>
+        <p>&copy; 2026 DRAGON EMPIRE – ĐẾ CHẾ RỒNG. All rights reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const introScreen = document.getElementById("intro-screen");
             const skipBtn = document.getElementById("skip-intro-btn");
-
-            const introTimer = setTimeout(() => { dismissIntro(); }, 3500);
-
-            skipBtn.addEventListener("click", () => {
-                clearTimeout(introTimer);
-                dismissIntro();
-            });
-
+            const timer = setTimeout(() => { dismissIntro(); }, 3000);
+            skipBtn.addEventListener("click", () => { clearTimeout(timer); dismissIntro(); });
             function dismissIntro() {
-                if (introScreen) {
-                    introScreen.classList.add("fade-out");
-                    setTimeout(() => { introScreen.style.display = "none"; }, 800);
-                }
+                if (introScreen) { introScreen.classList.add("fade-out"); setTimeout(() => { introScreen.style.display = "none"; }, 800); }
             }
             checkAuthSession();
         });
 
-        function switchTab(tabId) {
-            const tabs = document.querySelectorAll(".tab-content");
-            tabs.forEach(tab => tab.style.display = "none");
-
-            const navLinks = document.querySelectorAll(".nav-link");
-            navLinks.forEach(link => link.classList.remove("active"));
-
-            if (tabId === 'home') {
-                document.getElementById("tab-home").style.display = "block";
-                const homeLink = document.querySelector('.nav-link[data-tab="home"]');
-                if (homeLink) homeLink.classList.add("active");
-            } else if (tabId === 'games') {
-                document.getElementById("tab-games").style.display = "block";
-                const gameLink = document.querySelector('.nav-link[data-tab="games"]');
-                if (gameLink) gameLink.classList.add("active");
-            } else if (tabId === 'news') {
-                document.getElementById("tab-news").style.display = "block";
-                const newsLink = document.querySelector('.nav-link[data-tab="news"]');
-                if (newsLink) newsLink.classList.add("active");
-            } else if (tabId === 'support') {
-                document.getElementById("tab-support").style.display = "block";
-                const supportLink = document.querySelector('.nav-link[data-tab="support"]');
-                if (supportLink) supportLink.classList.add("active");
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showGameDetail(gameKey) {
-            const tabs = document.querySelectorAll(".tab-content");
-            tabs.forEach(tab => tab.style.display = "none");
-            document.getElementById("game-detail-view").style.display = "block";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function handleGameSearch(query) {
-            const searchTerm = query.toLowerCase().trim();
-            const gameCards = document.querySelectorAll(".game-card");
-            const noResults = document.getElementById("no-search-results");
-            let matchCount = 0;
-
-            gameCards.forEach(card => {
-                const gameName = card.getAttribute("data-name");
-                if (gameName.includes(searchTerm)) {
-                    card.style.display = "block";
-                    matchCount++;
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            if (matchCount === 0) {
-                noResults.style.display = "block";
-            } else {
-                noResults.style.display = "none";
-            }
-        }
-
-        function playGame(gameKey) {
-            const playArena = document.getElementById("play-arena");
-            playArena.style.display = "flex";
+        function playGame() {
+            document.getElementById("play-arena").style.display = "flex";
             document.body.style.overflow = "hidden";
+            startCanvasGame();
         }
 
         function closeGamePlay() {
-            const playArena = document.getElementById("play-arena");
-            playArena.style.display = "none";
+            document.getElementById("play-arena").style.display = "none";
             document.body.style.overflow = "auto";
         }
 
-        function toggleFullscreen() {
-            const arena = document.getElementById("play-arena");
-            if (!document.fullscreenElement) {
-                arena.requestFullscreen().catch(err => {
-                    alert(`Không thể kích hoạt toàn màn hình: ${err.message}`);
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        }
-
-        function openAuthModal(mode) {
-            const modal = document.getElementById("auth-modal");
-            modal.style.display = "flex";
-            switchAuthMode(mode);
-        }
-
-        function closeAuthModal() {
-            document.getElementById("auth-modal").style.display = "none";
-            clearAuthForms();
-        }
-
-        function switchAuthMode(mode) {
-            const loginForm = document.getElementById("form-login");
-            const regForm = document.getElementById("form-register");
-            clearAuthForms();
-
-            if (mode === 'login') {
-                loginForm.style.display = "block";
-                regForm.style.display = "none";
-            } else {
-                loginForm.style.display = "none";
-                regForm.style.display = "block";
-            }
-        }
-
-        function togglePassword(inputId, icon) {
-            const input = document.getElementById(inputId);
-            if (input.type === "password") {
-                input.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-            } else {
-                input.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-            }
-        }
-
-        function clearAuthForms() {
-            document.getElementById("login-username").value = "";
-            document.getElementById("login-password").value = "";
-            document.getElementById("reg-username").value = "";
-            document.getElementById("reg-email").value = "";
-            document.getElementById("reg-password").value = "";
-            document.getElementById("reg-confirm").value = "";
-            document.getElementById("login-error").style.display = "none";
-            document.getElementById("reg-error").style.display = "none";
-            document.getElementById("reg-success").style.display = "none";
-        }
-
-        function submitRegister() {
-            const username = document.getElementById("reg-username").value.trim();
-            const email = document.getElementById("reg-email").value.trim();
-            const password = document.getElementById("reg-password").value;
-            const confirm = document.getElementById("reg-confirm").value;
-            const terms = document.getElementById("reg-terms").checked;
-            const errDiv = document.getElementById("reg-error");
-            const succDiv = document.getElementById("reg-success");
-
-            errDiv.style.display = "none";
-            succDiv.style.display = "none";
-
-            if (!username || !email || !password || !confirm) {
-                errDiv.innerText = "Vui lòng điền đầy đủ tất cả các trường!";
-                errDiv.style.display = "block";
-                return;
-            }
-
-            if (password !== confirm) {
-                errDiv.innerText = "Mật khẩu xác nhận không khớp!";
-                errDiv.style.display = "block";
-                return;
-            }
-
-            if (!terms) {
-                errDiv.innerText = "Bạn phải đồng ý với Điều khoản sử dụng!";
-                errDiv.style.display = "block";
-                return;
-            }
-
-            let users = JSON.parse(localStorage.getItem("dragon_users")) || [];
-            if (users.find(u => u.username === username)) {
-                errDiv.innerText = "Tên tài khoản này đã tồn tại!";
-                errDiv.style.display = "block";
-                return;
-            }
-
-            users.push({ username, email, password });
-            localStorage.setItem("dragon_users", JSON.stringify(users));
-
-            succDiv.innerText = "Đăng ký thành công! Đang chuyển sang đăng nhập...";
-            succDiv.style.display = "block";
-
-            setTimeout(() => {
-                switchAuthMode('login');
-                document.getElementById("login-username").value = username;
-            }, 1500);
-        }
-
+        function openAuthModal() { document.getElementById("auth-modal").style.display = "flex"; }
+        function closeAuthModal() { document.getElementById("auth-modal").style.display = "none"; }
         function submitLogin() {
-            const username = document.getElementById("login-username").value.trim();
-            const password = document.getElementById("login-password").value;
-            const errDiv = document.getElementById("login-error");
-
-            errDiv.style.display = "none";
-
-            if (!username || !password) {
-                errDiv.innerText = "Vui lòng nhập tên tài khoản và mật khẩu!";
-                errDiv.style.display = "block";
-                return;
-            }
-
-            let users = JSON.parse(localStorage.getItem("dragon_users")) || [];
-            if (users.length === 0) {
-                users.push({ username: "ChuaTeRong", email: "admin@dragonempire.gaming", password: "123" });
-                localStorage.setItem("dragon_users", JSON.stringify(users));
-            }
-
-            const foundUser = users.find(u => u.username === username && u.password === password);
-
-            if (foundUser) {
-                localStorage.setItem("dragon_current_user", JSON.stringify(foundUser));
-                closeAuthModal();
-                checkAuthSession();
-            } else {
-                errDiv.innerText = "Tên tài khoản hoặc mật khẩu không chính xác!";
-                errDiv.style.display = "block";
-            }
-        }
-
-        function checkAuthSession() {
-            const currentUser = JSON.parse(localStorage.getItem("dragon_current_user"));
-            const guestActions = document.getElementById("guest-actions");
-            const userActions = document.getElementById("user-actions");
-            const displayUsername = document.getElementById("display-username");
-
-            if (currentUser) {
-                guestActions.style.display = "none";
-                userActions.style.display = "block";
-                displayUsername.innerText = currentUser.username;
-            } else {
-                guestActions.style.display = "flex";
-                userActions.style.display = "none";
-            }
-        }
-
-        function toggleUserDropdown() {
-            const dropdown = document.getElementById("user-dropdown");
-            dropdown.classList.toggle("show");
-        }
-
-        function handleLogout() {
-            localStorage.removeItem("dragon_current_user");
+            const u = document.getElementById("login-username").value || "ChuaTeRong";
+            localStorage.setItem("dragon_user", u);
+            closeAuthModal();
             checkAuthSession();
-            toggleUserDropdown();
-            switchTab('home');
         }
-
-        function showUserProfile() {
-            toggleUserDropdown();
-            const currentUser = JSON.parse(localStorage.getItem("dragon_current_user"));
-            alert(`THÔNG TIN TÀI KHOẢN:\n- Tên: ${currentUser ? currentUser.username : 'Khách'}\n- Email: ${currentUser ? currentUser.email : 'N/A'}\n- Trạng thái: Đã xác thực cục bộ`);
-        }
-
-        function showUserSettings() {
-            toggleUserDropdown();
-            alert("Cài đặt tài khoản: Hệ thống cấu hình cá nhân hóa đang phát triển.");
-        }
-
-        window.addEventListener("click", function(e) {
-            const trigger = document.querySelector(".user-trigger");
-            const dropdown = document.getElementById("user-dropdown");
-            if (trigger && dropdown && !trigger.contains(e.target) && !dropdown.contains(e.target)) {
-                dropdown.classList.remove("show");
+        function checkAuthSession() {
+            const u = localStorage.getItem("dragon_user");
+            if (u) {
+                document.getElementById("guest-actions").style.display = "none";
+                document.getElementById("user-actions").style.display = "block";
+                document.getElementById("display-username").innerText = u;
+            } else {
+                document.getElementById("guest-actions").style.display = "flex";
+                document.getElementById("user-actions").style.display = "none";
             }
-        });
+        }
+        function handleLogout() { localStorage.removeItem("dragon_user"); checkAuthSession(); }
+
+        /* CANVAS DRAGON GAME LOGIC */
+        let animationId;
+        function startCanvasGame() {
+            const canvas = document.getElementById("dragonCanvas");
+            const ctx = canvas.getContext("2d");
+            
+            let dragon = { x: 100, y: 250, size: 25, speed: 5, color: '#f1c40f' };
+            let fireballs = [];
+            let keys = {};
+
+            window.onkeydown = (e) => { keys[e.code] = true; };
+            window.onkeyup = (e) => { keys[e.code] = false; };
+
+            function gameLoop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Di chuyển rồng
+                if (keys['KeyW'] || keys['ArrowUp']) dragon.y = Math.max(30, dragon.y - dragon.speed);
+                if (keys['KeyS'] || keys['ArrowDown']) dragon.y = Math.min(canvas.height - 30, dragon.y + dragon.speed);
+                if (keys['KeyA'] || keys['ArrowLeft']) dragon.x = Math.max(30, dragon.x - dragon.speed);
+                if (keys['KeyD'] || keys['ArrowRight']) dragon.x = Math.min(canvas.width - 30, dragon.x + dragon.speed);
+
+                // Phun lửa
+                if (keys['Space']) {
+                    if (fireballs.length < 10) {
+                        fireballs.push({ x: dragon.x + 20, y: dragon.y, r: 8 });
+                    }
+                }
+
+                // Vẽ Rồng
+                ctx.beginPath();
+                ctx.arc(dragon.x, dragon.y, dragon.size, 0, Math.PI * 2);
+                ctx.fillStyle = dragon.color;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = "#f1c40f";
+                ctx.fill();
+
+                // Cánh rồng
+                ctx.beginPath();
+                ctx.moveTo(dragon.x - 10, dragon.y);
+                ctx.lineTo(dragon.x - 30, dragon.y - 25);
+                ctx.lineTo(dragon.x + 5, dragon.y - 10);
+                ctx.fillStyle = "#e74c3c";
+                ctx.fill();
+
+                // Vẽ và cập nhật bóng lửa
+                ctx.fillStyle = "#e74c3c";
+                ctx.shadowColor = "#e74c3c";
+                fireballs.forEach((fb, index) => {
+                    fb.x += 8;
+                    ctx.beginPath();
+                    ctx.arc(fb.x, fb.y, fb.r, 0, Math.PI * 2);
+                    ctx.fill();
+                    if (fb.x > canvas.width) fireballs.splice(index, 1);
+                });
+
+                animationId = requestAnimationFrame(gameLoop);
+            }
+            if (animationId) cancelAnimationFrame(animationId);
+            gameLoop();
+        }
     </script>
 </body>
 </html>
