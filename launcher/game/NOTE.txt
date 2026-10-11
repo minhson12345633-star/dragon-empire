@@ -1,0 +1,1 @@
+Lưu trữ game file, từng phiên bản có folder riêng
